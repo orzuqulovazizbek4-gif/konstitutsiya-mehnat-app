@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # ---------------------------------------------------------
-# 1. PAGE CONFIGURATION & METADATA
+# 1. PAGE CONFIGURATION
 # ---------------------------------------------------------
 st.set_page_config(
     page_title="Konstitutsiyaviy va Mehnat Huquqlari Tahlili",
@@ -12,206 +12,260 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------------
-# 2. FIXED APPLE DARK LIQUID GLASS CSS
+# 2. REAL APPLE LIQUID GLASS & ANIMATED BACKGROUND (HTML/CSS)
 # ---------------------------------------------------------
 st.markdown("""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
-    html, body, [class*="css"] {
-        font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-        -webkit-font-smoothing: antialiased;
-    }
+<!-- REAL LIQUID ANIMATION CONTAINER -->
+<div class="liquid-bg-container">
+    <div class="liquid-orb orb-1"></div>
+    <div class="liquid-orb orb-2"></div>
+    <div class="liquid-orb orb-3"></div>
+</div>
 
-    /* 🌌 FORCE DARK BACKGROUND FOR STREAMLIT CONTAINERS */
-    .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"], section.main {
-        background-color: #05070f !important;
-        background: radial-gradient(circle at 50% 10%, #0f172a 0%, #05070f 100%) !important;
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+    /* BASE ROOT & STREAMLIT OVERRIDES */
+    html, body, [class*="stApp"] {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif !important;
+        background-color: #030712 !important;
         color: #f8fafc !important;
     }
 
-    /* 🔮 LIQUID NEON ORBS (BACKGROUND LAYER) */
-    .stApp::before {
-        content: '';
+    [data-testid="stAppViewContainer"] {
+        background: #030712 !important;
+    }
+
+    [data-testid="stHeader"] {
+        background: transparent !important;
+    }
+
+    /* 🌌 DYNAMIC LIQUID ORBS ANIMATION (REAL MOTION) */
+    .liquid-bg-container {
         position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .liquid-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.45;
+        will-change: transform;
+    }
+
+    .orb-1 {
         top: -10%;
-        left: -10%;
+        left: 15%;
         width: 50vw;
         height: 50vw;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(0,0,0,0) 70%);
-        filter: blur(80px);
-        animation: liquidFloat1 18s ease-in-out infinite alternate;
-        pointer-events: none;
-        z-index: 0;
+        background: radial-gradient(circle, #38bdf8 0%, #0284c7 60%, rgba(0,0,0,0) 100%);
+        animation: orbFloat1 16s ease-in-out infinite alternate;
     }
 
-    .stApp::after {
-        content: '';
-        position: fixed;
-        bottom: -10%;
-        right: -10%;
+    .orb-2 {
+        bottom: -15%;
+        right: 10%;
         width: 55vw;
         height: 55vw;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 70%);
-        filter: blur(90px);
-        animation: liquidFloat2 22s ease-in-out infinite alternate;
-        pointer-events: none;
-        z-index: 0;
+        background: radial-gradient(circle, #8b5cf6 0%, #6366f1 60%, rgba(0,0,0,0) 100%);
+        animation: orbFloat2 20s ease-in-out infinite alternate;
     }
 
-    @keyframes liquidFloat1 {
-        0% { transform: translate(0, 0) scale(1); }
-        100% { transform: translate(100px, 70px) scale(1.2); }
+    .orb-3 {
+        top: 40%;
+        left: 45%;
+        width: 35vw;
+        height: 35vw;
+        background: radial-gradient(circle, #ec4899 0%, #a855f7 60%, rgba(0,0,0,0) 100%);
+        animation: orbFloat3 18s ease-in-out infinite alternate;
     }
 
-    @keyframes liquidFloat2 {
-        0% { transform: translate(0, 0) scale(1); }
-        100% { transform: translate(-90px, -60px) scale(1.25); }
+    @keyframes orbFloat1 {
+        0% { transform: translate3d(0, 0, 0) scale(1); }
+        50% { transform: translate3d(140px, 90px, 0) scale(1.25); }
+        100% { transform: translate3d(-80px, 120px, 0) scale(0.9); }
     }
 
-    /* 📌 ENSURE CONTENT IS ABOVE BACKGROUND */
-    .block-container, [data-testid="stVerticalBlock"] {
+    @keyframes orbFloat2 {
+        0% { transform: translate3d(0, 0, 0) scale(1); }
+        50% { transform: translate3d(-120px, -100px, 0) scale(1.2); }
+        100% { transform: translate3d(60px, -50px, 0) scale(0.95); }
+    }
+
+    @keyframes orbFloat3 {
+        0% { transform: translate3d(0, 0, 0) scale(0.9); }
+        50% { transform: translate3d(-90px, 80px, 0) scale(1.3); }
+        100% { transform: translate3d(100px, -70px, 0) scale(1); }
+    }
+
+    /* 🍏 APPLE PAGE TRANSITION ANIMATION (BO'LIMLAR O'TGANDA) */
+    .main .block-container {
         position: relative;
         z-index: 2;
+        max-width: 1200px;
+        padding-top: 2rem;
+        animation: appleEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* 🍏 APPLE LIQUID GLASS HEADER PANEL */
-    .main-header {
-        background: rgba(255, 255, 255, 0.03) !important;
-        backdrop-filter: blur(25px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
-        padding: 2.2rem 2.5rem;
-        border-radius: 24px;
-        color: #ffffff !important;
-        margin-bottom: 2rem;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    @keyframes appleEnter {
+        0% {
+            opacity: 0;
+            transform: translateY(30px) scale(0.97);
+            filter: blur(12px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
+        }
     }
-    
+
+    /* 🍏 APPLE HIGH-GLOSS LIQUID GLASS CARDS */
+    .main-header {
+        background: rgba(255, 255, 255, 0.04) !important;
+        backdrop-filter: blur(35px) saturate(210%) !important;
+        -webkit-backdrop-filter: blur(35px) saturate(210%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+        padding: 2.2rem 2.5rem;
+        border-radius: 28px;
+        margin-bottom: 2rem;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
     .main-header h1 {
-        background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #38bdf8 100%);
+        background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #38bdf8 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 700;
-        font-size: 2.1rem;
-        margin-bottom: 0.5rem;
+        font-size: 2.2rem;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.6rem;
     }
-    
+
     .main-header p {
         color: #94a3b8 !important;
         font-size: 1.1rem;
         margin: 0;
     }
 
-    /* 💎 APPLE GLASSMORPHIC CARDS */
     .legal-card {
-        background: rgba(255, 255, 255, 0.03) !important;
-        backdrop-filter: blur(20px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        background: rgba(255, 255, 255, 0.035) !important;
+        backdrop-filter: blur(30px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
         border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
-        border-radius: 20px;
-        padding: 1.6rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
+        border-radius: 24px;
+        padding: 1.8rem;
         margin-bottom: 1.5rem;
-        color: #f1f5f9 !important;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        animation: appleEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .legal-card:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.05) !important;
-        border-color: rgba(56, 189, 248, 0.4) !important;
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.2);
+        transform: translateY(-6px) scale(1.01);
+        background: rgba(255, 255, 255, 0.06) !important;
+        border-color: rgba(56, 189, 248, 0.5) !important;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.25);
     }
 
     .legal-card h3 {
         color: #ffffff !important;
         font-weight: 600;
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         margin: 0;
     }
 
-    .legal-card p, .legal-card div, .legal-card strong {
-        color: #cbd5e1 !important;
-    }
-
-    /* 🏷️ APPLE LIQUID BADGES */
     .badge-citizen {
-        background: rgba(56, 189, 248, 0.15) !important;
+        background: rgba(56, 189, 248, 0.18) !important;
         color: #38bdf8 !important;
-        padding: 0.35rem 0.9rem;
+        padding: 0.4rem 1rem;
         border-radius: 999px;
         font-weight: 600;
         font-size: 0.82rem;
-        display: inline-block;
-        border: 1px solid rgba(56, 189, 248, 0.3);
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
     }
 
     .badge-everyone {
-        background: rgba(52, 211, 153, 0.15) !important;
+        background: rgba(52, 211, 153, 0.18) !important;
         color: #34d399 !important;
-        padding: 0.35rem 0.9rem;
+        padding: 0.4rem 1rem;
         border-radius: 999px;
         font-weight: 600;
         font-size: 0.82rem;
-        display: inline-block;
-        border: 1px solid rgba(52, 211, 153, 0.3);
+        border: 1px solid rgba(52, 211, 153, 0.4);
+        box-shadow: 0 0 15px rgba(52, 211, 153, 0.2);
     }
 
-    /* 📑 LIQUID QUOTE / NORM BOX */
     .norm-box {
-        background: rgba(15, 23, 42, 0.6) !important;
-        border-left: 3px solid #38bdf8 !important;
-        padding: 1.1rem;
-        border-radius: 12px;
-        margin: 1rem 0;
-        color: #e2e8f0 !important;
-    }
-
-    .norm-box em {
-        color: #7dd3fc !important;
-        font-style: normal;
+        background: rgba(15, 23, 42, 0.55) !important;
+        backdrop-filter: blur(15px) !important;
+        border-left: 4px solid #38bdf8 !important;
+        padding: 1.2rem;
+        border-radius: 14px;
+        margin: 1.2rem 0;
+        color: #f1f5f9 !important;
     }
 
     .code-badge {
         font-weight: 600;
         color: #38bdf8 !important;
-        background: rgba(56, 189, 248, 0.12) !important;
-        padding: 3px 8px;
-        border-radius: 6px;
-        border: 1px solid rgba(56, 189, 248, 0.25);
+        background: rgba(56, 189, 248, 0.15) !important;
+        padding: 4px 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(56, 189, 248, 0.3);
     }
 
-    /* 📊 STREAMLIT NATIVE UI GLASS OVERRIDES */
-    div[data-testid="stSidebar"] {
-        background: rgba(10, 15, 29, 0.7) !important;
-        backdrop-filter: blur(20px) !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    /* 🎛️ SIDEBAR & RADIO INTERACTION ANIMATIONS */
+    section[data-testid="stSidebar"] {
+        background: rgba(10, 15, 30, 0.65) !important;
+        backdrop-filter: blur(35px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(35px) saturate(200%) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+        z-index: 3;
+    }
+
+    /* APPLE MENU BUTTONS EFFECT */
+    div[data-testid="stSidebar"] div[role="radiogroup"] > label {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.06) !important;
+        padding: 0.75rem 1rem !important;
+        border-radius: 16px !important;
+        margin-bottom: 0.6rem !important;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        cursor: pointer !important;
+    }
+
+    div[data-testid="stSidebar"] div[role="radiogroup"] > label:hover {
+        background: rgba(255, 255, 255, 0.12) !important;
+        border-color: rgba(56, 189, 248, 0.5) !important;
+        transform: translateX(6px) scale(1.02);
+        box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
     }
 
     div[data-testid="stMetric"] {
-        background: rgba(255, 255, 255, 0.03) !important;
-        backdrop-filter: blur(15px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        padding: 1rem;
-        border-radius: 16px;
-    }
-
-    .stSelectbox > div > div {
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 12px !important;
-        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.035) !important;
+        backdrop-filter: blur(25px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+        padding: 1.2rem;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# 3. DATABASE & LEGAL CONTENT DATASTRUCTURES
+# 3. DATABASE & LEGAL CONTENT
 # ---------------------------------------------------------
 
 ARTICLES_DATA = {
@@ -345,9 +399,9 @@ LIABILITY_DATA = [
 # ---------------------------------------------------------
 # 4. SIDEBAR NAVIGATION
 # ---------------------------------------------------------
-st.sidebar.image("https://img.icons8.com/color/96/scales.png", width=75)
+st.sidebar.image("https://img.icons8.com/color/96/scales.png", width=70)
 st.sidebar.title("Huquqiy Tahlil")
-st.sidebar.caption("Apple Liquid Glass Edition")
+st.sidebar.caption("Apple Dynamic Liquid Edition")
 
 nav_option = st.sidebar.radio(
     "Bo'limni tanlang:",
@@ -368,7 +422,7 @@ st.sidebar.info("""
 """)
 
 # ---------------------------------------------------------
-# 5. HEADER SECTION
+# 5. MAIN CONTENT HEADER
 # ---------------------------------------------------------
 st.markdown("""
 <div class="main-header">
