@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------------
-# 2. CUSTOM MODERN CSS STYLING
+# 2. ADVANCED ANIMATED BACKGROUND & GLASSMORPHISM CSS
 # ---------------------------------------------------------
 st.markdown("""
 <style>
@@ -21,72 +21,166 @@ st.markdown("""
     html, body, [class*="css"] {
         font-family: 'Inter', sans-serif;
     }
-    
+
+    /* 🌌 ANIMATED MULTI-LAYER GRADIENT BACKGROUND */
+    .stApp {
+        background: linear-gradient(-45deg, #070a12, #0f172a, #1e1b4b, #091e3a, #0b1329);
+        background-size: 400% 400%;
+        animation: gradientBG 18s ease infinite;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* 🔮 FLOATING NEON GLOW SPHERE 1 */
+    .stApp::before {
+        content: '';
+        position: fixed;
+        top: -15%;
+        left: -10%;
+        width: 50vw;
+        height: 50vw;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(0,0,0,0) 70%);
+        animation: floatOrb1 12s ease-in-out infinite alternate;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* 🔮 FLOATING NEON GLOW SPHERE 2 */
+    .stApp::after {
+        content: '';
+        position: fixed;
+        bottom: -20%;
+        right: -10%;
+        width: 60vw;
+        height: 60vw;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(0,0,0,0) 70%);
+        animation: floatOrb2 15s ease-in-out infinite alternate;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    @keyframes floatOrb1 {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(120px, 80px) scale(1.25); }
+    }
+
+    @keyframes floatOrb2 {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(-100px, -90px) scale(1.3); }
+    }
+
+    /* 💎 GLASSMORPHISM HEADER */
     .main-header {
-        background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-        padding: 2.5rem;
-        border-radius: 16px;
-        color: white;
+        background: rgba(15, 23, 42, 0.75) !important;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 2.2rem;
+        border-radius: 20px;
+        color: #ffffff !important;
         margin-bottom: 2rem;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        position: relative;
+        z-index: 1;
     }
     
     .main-header h1 {
-        color: #ffffff;
+        color: #ffffff !important;
         font-weight: 700;
         margin-bottom: 0.5rem;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     
     .main-header p {
-        color: #93c5fd;
+        color: #93c5fd !important;
         font-size: 1.1rem;
         margin: 0;
     }
 
+    /* 🃏 GLASSMORPHIC LEGAL CARDS WITH HOVER ANIMATION */
     .legal-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 1.2rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        background: rgba(30, 41, 59, 0.65) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 16px;
+        padding: 1.6rem;
+        margin-bottom: 1.4rem;
+        color: #f8fafc !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        z-index: 1;
+    }
+
+    .legal-card:hover {
+        transform: translateY(-6px) scale(1.01);
+        box-shadow: 0 16px 40px 0 rgba(59, 130, 246, 0.3);
+        border: 1px solid rgba(96, 165, 250, 0.5) !important;
+    }
+
+    .legal-card h3 {
+        color: #ffffff !important;
+        margin: 0;
+    }
+
+    .legal-card p, .legal-card div, .legal-card em, .legal-card strong {
+        color: #cbd5e1 !important;
     }
     
     .badge-citizen {
-        background-color: #dbeafe;
-        color: #1e40af;
-        padding: 0.25rem 0.75rem;
+        background: rgba(30, 58, 138, 0.8) !important;
+        color: #93c5fd !important;
+        padding: 0.35rem 0.9rem;
         border-radius: 9999px;
         font-weight: 600;
         font-size: 0.85rem;
         display: inline-block;
+        border: 1px solid #3b82f6;
+        box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
     }
 
     .badge-everyone {
-        background-color: #dcfce7;
-        color: #166534;
-        padding: 0.25rem 0.75rem;
+        background: rgba(6, 78, 59, 0.8) !important;
+        color: #6ee7b7 !important;
+        padding: 0.35rem 0.9rem;
         border-radius: 9999px;
         font-weight: 600;
         font-size: 0.85rem;
         display: inline-block;
+        border: 1px solid #10b981;
+        box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
     }
 
     .norm-box {
-        background-color: #f8fafc;
-        border-left: 4px solid #2563eb;
-        padding: 1rem;
-        border-radius: 0 8px 8px 0;
-        margin: 0.8rem 0;
+        background: rgba(15, 23, 42, 0.7) !important;
+        border-left: 4px solid #3b82f6 !important;
+        padding: 1.1rem;
+        border-radius: 0 10px 10px 0;
+        margin: 1rem 0;
+        color: #e2e8f0 !important;
+        backdrop-filter: blur(8px);
+    }
+
+    .norm-box em {
+        color: #93c5fd !important;
     }
 
     .code-badge {
         font-weight: 700;
-        color: #0f172a;
-        background-color: #e2e8f0;
-        padding: 2px 6px;
-        border-radius: 4px;
+        color: #38bdf8 !important;
+        background: rgba(15, 23, 42, 0.8) !important;
+        padding: 5px 10px;
+        border-radius: 6px;
+        border: 1px solid #0284c7;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -285,14 +379,14 @@ if nav_option == "🏛️ Subyektlar bo'yicha tasnif (36-44)":
 
         st.markdown(f"""
         <div class="legal-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <h3 style="margin: 0; color: #1e293b;">{data['title']}</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3>{data['title']}</h3>
                 <span class="{data['badge_class']}">{data['category']}</span>
             </div>
             <div class="norm-box">
                 <em>"{data['text']}"</em>
             </div>
-            <div style="margin-top: 10px;">
+            <div style="margin-top: 12px; line-height: 1.6;">
                 <p><strong>✅ Qaysi shaxslarga tatbiq etiladi:</strong> {data['applicability']}</p>
                 <p><strong>❌ Qaysi shaxslarga tatbiq etilmaydi:</strong> {data['non_applicability']}</p>
                 <p><strong>🧠 Mantiqiy-huquqiy asos va sababi:</strong> {data['reasoning']}</p>
