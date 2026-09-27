@@ -12,175 +12,255 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------------
-# 2. ADVANCED ANIMATED BACKGROUND & GLASSMORPHISM CSS
+# 2. APPLE LIQUID GLASS & MESH GRADIENT CSS
 # ---------------------------------------------------------
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
     
     html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
     }
 
-    /* 🌌 ANIMATED MULTI-LAYER GRADIENT BACKGROUND */
+    /* 🌊 APPLE DYNAMIC LIQUID MESH BACKGROUND */
     .stApp {
-        background: linear-gradient(-45deg, #070a12, #0f172a, #1e1b4b, #091e3a, #0b1329);
-        background-size: 400% 400%;
-        animation: gradientBG 18s ease infinite;
+        background: #030712;
+        background-image: 
+            radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.2) 0px, transparent 50%),
+            radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+            radial-gradient(at 0% 100%, rgba(14, 165, 233, 0.2) 0px, transparent 50%);
         position: relative;
         overflow-x: hidden;
     }
 
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* 🔮 FLOATING NEON GLOW SPHERE 1 */
+    /* 🔮 LIQUID AURA BLOBS ANIMATION */
     .stApp::before {
         content: '';
         position: fixed;
-        top: -15%;
-        left: -10%;
-        width: 50vw;
-        height: 50vw;
+        top: 10%;
+        left: 15%;
+        width: 45vw;
+        height: 45vw;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(0,0,0,0) 70%);
-        animation: floatOrb1 12s ease-in-out infinite alternate;
+        background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%);
+        filter: blur(60px);
+        animation: liquidFloat1 20s ease-in-out infinite alternate;
         pointer-events: none;
         z-index: 0;
     }
 
-    /* 🔮 FLOATING NEON GLOW SPHERE 2 */
     .stApp::after {
         content: '';
         position: fixed;
-        bottom: -20%;
-        right: -10%;
-        width: 60vw;
-        height: 60vw;
+        bottom: 5%;
+        right: 10%;
+        width: 50vw;
+        height: 50vw;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(0,0,0,0) 70%);
-        animation: floatOrb2 15s ease-in-out infinite alternate;
+        background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 70%);
+        filter: blur(70px);
+        animation: liquidFloat2 24s ease-in-out infinite alternate;
         pointer-events: none;
         z-index: 0;
     }
 
-    @keyframes floatOrb1 {
-        0% { transform: translate(0, 0) scale(1); }
-        100% { transform: translate(120px, 80px) scale(1.25); }
+    @keyframes liquidFloat1 {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        50% { transform: translate(80px, 60px) rotate(180deg) scale(1.15); }
+        100% { transform: translate(-40px, 90px) rotate(360deg) scale(0.95); }
     }
 
-    @keyframes floatOrb2 {
-        0% { transform: translate(0, 0) scale(1); }
-        100% { transform: translate(-100px, -90px) scale(1.3); }
+    @keyframes liquidFloat2 {
+        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        50% { transform: translate(-90px, -70px) rotate(-180deg) scale(1.2); }
+        100% { transform: translate(50px, -40px) rotate(-360deg) scale(1); }
     }
 
-    /* 💎 GLASSMORPHISM HEADER */
+    /* 🍏 APPLE LIQUID GLASS HEADER PANEL */
     .main-header {
-        background: rgba(15, 23, 42, 0.75) !important;
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        padding: 2.2rem;
-        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.04) !important;
+        backdrop-filter: blur(30px) saturate(190%) !important;
+        -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+        padding: 2.5rem 2.8rem;
+        border-radius: 28px;
         color: #ffffff !important;
-        margin-bottom: 2rem;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        margin-bottom: 2.2rem;
+        box-shadow: 
+            0 30px 60px -12px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
+            inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
         position: relative;
         z-index: 1;
     }
     
     .main-header h1 {
-        color: #ffffff !important;
+        background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 40%, #38bdf8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         font-weight: 700;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        font-size: 2.3rem;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.6rem;
     }
     
     .main-header p {
-        color: #93c5fd !important;
-        font-size: 1.1rem;
+        color: #94a3b8 !important;
+        font-size: 1.15rem;
+        font-weight: 400;
         margin: 0;
+        letter-spacing: -0.01em;
     }
 
-    /* 🃏 GLASSMORPHIC LEGAL CARDS WITH HOVER ANIMATION */
+    /* 💎 APPLE GLASSMORPHIC CARDS WITH SPECULAR GLARE */
     .legal-card {
-        background: rgba(30, 41, 59, 0.65) !important;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 16px;
-        padding: 1.6rem;
-        margin-bottom: 1.4rem;
-        color: #f8fafc !important;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        background: rgba(255, 255, 255, 0.035) !important;
+        backdrop-filter: blur(25px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 24px;
+        padding: 1.8rem;
+        margin-bottom: 1.6rem;
+        color: #f1f5f9 !important;
+        box-shadow: 
+            0 20px 40px -15px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         position: relative;
         z-index: 1;
+        overflow: hidden;
+    }
+
+    .legal-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+        transition: 0.6s;
+        pointer-events: none;
+    }
+
+    .legal-card:hover::before {
+        left: 100%;
     }
 
     .legal-card:hover {
-        transform: translateY(-6px) scale(1.01);
-        box-shadow: 0 16px 40px 0 rgba(59, 130, 246, 0.3);
-        border: 1px solid rgba(96, 165, 250, 0.5) !important;
+        transform: translateY(-6px) scale(1.008);
+        background: rgba(255, 255, 255, 0.06) !important;
+        border-color: rgba(56, 189, 248, 0.4) !important;
+        border-top-color: rgba(255, 255, 255, 0.4) !important;
+        box-shadow: 
+            0 30px 60px -12px rgba(0, 0, 0, 0.6),
+            0 0 30px 0 rgba(56, 189, 248, 0.25),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
     }
 
     .legal-card h3 {
         color: #ffffff !important;
+        font-weight: 600;
+        font-size: 1.25rem;
+        letter-spacing: -0.01em;
         margin: 0;
     }
 
-    .legal-card p, .legal-card div, .legal-card em, .legal-card strong {
+    .legal-card p, .legal-card div, .legal-card strong {
         color: #cbd5e1 !important;
     }
-    
+
+    /* 🏷️ APPLE LIQUID BADGES */
     .badge-citizen {
-        background: rgba(30, 58, 138, 0.8) !important;
-        color: #93c5fd !important;
-        padding: 0.35rem 0.9rem;
-        border-radius: 9999px;
+        background: rgba(56, 189, 248, 0.12) !important;
+        color: #38bdf8 !important;
+        backdrop-filter: blur(12px);
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
         font-weight: 600;
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         display: inline-block;
-        border: 1px solid #3b82f6;
-        box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+        letter-spacing: 0.02em;
     }
 
     .badge-everyone {
-        background: rgba(6, 78, 59, 0.8) !important;
-        color: #6ee7b7 !important;
-        padding: 0.35rem 0.9rem;
-        border-radius: 9999px;
+        background: rgba(52, 211, 153, 0.12) !important;
+        color: #34d399 !important;
+        backdrop-filter: blur(12px);
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
         font-weight: 600;
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         display: inline-block;
-        border: 1px solid #10b981;
-        box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        border: 1px solid rgba(52, 211, 153, 0.3);
+        box-shadow: 0 4px 15px rgba(52, 211, 153, 0.2);
+        letter-spacing: 0.02em;
     }
 
+    /* 📑 LIQUID QUOTE / NORM BOX */
     .norm-box {
-        background: rgba(15, 23, 42, 0.7) !important;
-        border-left: 4px solid #3b82f6 !important;
-        padding: 1.1rem;
-        border-radius: 0 10px 10px 0;
-        margin: 1rem 0;
+        background: rgba(15, 23, 42, 0.5) !important;
+        backdrop-filter: blur(16px);
+        border-left: 3px solid #38bdf8 !important;
+        padding: 1.2rem;
+        border-radius: 14px;
+        margin: 1.1rem 0;
         color: #e2e8f0 !important;
-        backdrop-filter: blur(8px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
     .norm-box em {
-        color: #93c5fd !important;
+        color: #7dd3fc !important;
+        font-style: normal;
+        font-weight: 400;
     }
 
     .code-badge {
-        font-weight: 700;
+        font-weight: 600;
         color: #38bdf8 !important;
-        background: rgba(15, 23, 42, 0.8) !important;
-        padding: 5px 10px;
-        border-radius: 6px;
-        border: 1px solid #0284c7;
+        background: rgba(56, 189, 248, 0.1) !important;
+        padding: 4px 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    /* 📊 STREAMLIT NATIVE UI GLASS OVERRIDES */
+    div[data-testid="stSidebar"] {
+        background: rgba(15, 23, 42, 0.4) !important;
+        backdrop-filter: blur(25px) saturate(180%) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    div[data-testid="stMetric"] {
+        background: rgba(255, 255, 255, 0.03) !important;
+        backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+        padding: 1.2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .stSelectbox > div > div {
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: blur(15px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 14px !important;
+        color: #ffffff !important;
+    }
+
+    div[data-testid="stExpander"] {
+        background: rgba(255, 255, 255, 0.025) !important;
+        backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 18px !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -320,9 +400,9 @@ LIABILITY_DATA = [
 # ---------------------------------------------------------
 # 4. SIDEBAR NAVIGATION
 # ---------------------------------------------------------
-st.sidebar.image("https://img.icons8.com/color/96/scales.png", width=80)
-st.sidebar.title("Huquqiy Tahlil Markazi")
-st.sidebar.caption("Konstitutsiyaviy va Sohaviy Qonunchilik Birligi")
+st.sidebar.image("https://img.icons8.com/color/96/scales.png", width=75)
+st.sidebar.title("Huquqiy Tahlil")
+st.sidebar.caption("Apple Liquid Glass Edition")
 
 nav_option = st.sidebar.radio(
     "Bo'limni tanlang:",
@@ -379,14 +459,14 @@ if nav_option == "🏛️ Subyektlar bo'yicha tasnif (36-44)":
 
         st.markdown(f"""
         <div class="legal-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
                 <h3>{data['title']}</h3>
                 <span class="{data['badge_class']}">{data['category']}</span>
             </div>
             <div class="norm-box">
                 <em>"{data['text']}"</em>
             </div>
-            <div style="margin-top: 12px; line-height: 1.6;">
+            <div style="margin-top: 14px; line-height: 1.65;">
                 <p><strong>✅ Qaysi shaxslarga tatbiq etiladi:</strong> {data['applicability']}</p>
                 <p><strong>❌ Qaysi shaxslarga tatbiq etilmaydi:</strong> {data['non_applicability']}</p>
                 <p><strong>🧠 Mantiqiy-huquqiy asos va sababi:</strong> {data['reasoning']}</p>
