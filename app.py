@@ -53,11 +53,6 @@ st.markdown("""
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
     
-    .legal-card:hover {
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        border-color: #3b82f6;
-    }
-
     .badge-citizen {
         background-color: #dbeafe;
         color: #1e40af;
@@ -109,7 +104,7 @@ ARTICLES_DATA = {
         "applicability": "Faqat Oʻzbekiston Respublikasi fuqarolariga tatbiq etiladi.",
         "non_applicability": "Chet el fuqarolari va fuqaroligi boʻlmagan shaxslarga tatbiq etilmaydi.",
         "reasoning": "Davlat suverenitetini amalga oshirish va davlat hokimiyati organlarini demokratik shakllantirish siyosiy huquq bo'lib, u bevosita shaxs va davlat o'rtasidagi siyosiy-huquqiy bog'liqlikni (fuqarolikni) talab etadi.",
-        "related_laws": "O'zB 'Chet el fuqarolarining va fuqaroligi bo'lmagan shaxslarning huquqiy holati to'g'risida'gi Qonunining 26-moddasi (Saylov va referendumlarda qatnashmaslik)."
+        "related_laws": "O'zR 'Chet el fuqarolarining va fuqaroligi bo'lmagan shaxslarning huquqiy holati to'g'risida'gi Qonunining 26-moddasi."
     },
     37: {
         "title": "37-modda. Davlat xizmatiga kirishdagi tenglik",
@@ -127,7 +122,7 @@ ARTICLES_DATA = {
         "badge_class": "badge-citizen",
         "text": "Fuqarolar oʻz ijtimoiy faolliklarini Oʻzbekiston Respublikasi qonunlariga muvofiq mitinglar, yigʻilishlar va namoyishlar shaklida amalga oshirish huquqiga ega...",
         "applicability": "Faqat Oʻzbekiston Respublikasi fuqarolariga tatbiq etiladi.",
-        "non_applicability": "Chet el fuqarolariga va fuqaroligi boʻlmagan shaxslarga (ichki siyosiy harakatlar doirasida) tatbiq etilmaydi.",
+        "non_applicability": "Chet el fuqarolariga va fuqaroligi boʻlmagan shaxslarga tatbiq etilmaydi.",
         "reasoning": "Mamlakatning ichki siyosiy muhitiga nisbatan iroda bildirish va ijtimoiy-siyosiy talablar surish siyosiy subyektlikni, ya'ni fuqarolikni talab qiladi.",
         "related_laws": "MJtK 201-modda, JK 217-modda."
     },
@@ -137,7 +132,7 @@ ARTICLES_DATA = {
         "badge_class": "badge-citizen",
         "text": "Oʻzbekiston Respublikasi fuqarolari kasaba uyushmalariga, siyosiy partiyalarga va boshqa jamoat birlashmalariga uyushish, ommaviy harakatlarda ishtirok etish huquqiga egadirlar...",
         "applicability": "Siyosiy partiyalarga a'zolik va siyosiy harakatlarda ishtirok etish faqat fuqarolarga tegishli.",
-        "non_applicability": "Chet el fuqarolari siyosiy partiyalarga a'zo bo'lishi va ularni moliyalashtirishi taqiqlanadi.",
+        "non_applicability": "Chet el fuqarolari siyosiy partiyalarga a'zo bo'lishi taqiqlanadi.",
         "reasoning": "Siyosiy partiyalar davlat hokimiyatini egallash yoki unda ishtirok etish uchun kurashadi. Ajnabiy shaxslarning partiyalarga kirishi davlatning ichki ishlariga aralashish xavfini tug'diradi.",
         "related_laws": "'Siyosiy partiyalar to'g'risida'gi Qonun 8-modda."
     },
@@ -148,8 +143,8 @@ ARTICLES_DATA = {
         "text": "Har kim bevosita oʻzi va boshqalar bilan birgalikda davlat organlariga hamda tashkilotlariga, fuqarolarning oʻzini oʻzi boshqarish organlariga... murojaat qilish huquqiga ega.",
         "applicability": "O'zbekiston fuqarolari, chet el fuqarolari va fuqaroligi bo'lmagan har bir shaxsga.",
         "non_applicability": "Cheklov yo'q. Barcha shaxslarga teng tatbiq etiladi.",
-        "reasoning": "Inson huquq va erkinliklarini, qonuniy manfaatlarini (shaxsiy, mulkiy va h.k.) davlat idoralari orqali himoya qilish har bir shaxsning universal kafolatidir.",
-        "related_laws": "'Jismoniy va yuridik shaxslarning murojaatlari to'g'risida'gi Qonunning 1-moddasi."
+        "reasoning": "Inson huquq va erkinliklarini, qonuniy manfaatlarini davlat idoralari orqali himoya qilish har bir shaxsning universal kafolatidir.",
+        "related_laws": "'Jismoniy va yuridik shaxslarning murojaatlari to'g'risida'gi Qonun."
     },
     41: {
         "title": "41-modda. Mulkdor bo'lish va meros huquqi",
@@ -157,7 +152,7 @@ ARTICLES_DATA = {
         "badge_class": "badge-everyone",
         "text": "Har bir shaxs mulkdor boʻlishga haqli. Bank operatsiyalarining, omonatlarning va hisobvaraqlarning sir tutilishi, shuningdek meros huquqi qonun bilan kafolatlanadi.",
         "applicability": "Har bir jismoniy shaxsga (fuqaroligi bo'lishidan qat'i nazar).",
-        "non_applicability": "Cheklov yo'q (Muayyan maxsus mol-mulk turlari, masalan yer egaligi, maxsus tartibga solinishi mustasno).",
+        "non_applicability": "Cheklov yo'q.",
         "reasoning": "Mulk huquqi insonning iqtisodiy erkinligi va shaxsiy daxlsizligining poydevori bo'lib, fuqarolikka bog'liq bo'lmagan fundamental huquqdir.",
         "related_laws": "O'zbekiston Respublikasi Fuqarolik Kodeksi."
     },
@@ -229,7 +224,7 @@ LIABILITY_DATA = [
 ]
 
 # ---------------------------------------------------------
-# 4. SIDEBAR NAVIGATION & FILTERS
+# 4. SIDEBAR NAVIGATION
 # ---------------------------------------------------------
 st.sidebar.image("https://img.icons8.com/color/96/scales.png", width=80)
 st.sidebar.title("Huquqiy Tahlil Markazi")
@@ -240,8 +235,7 @@ nav_option = st.sidebar.radio(
     [
         "🏛️ Subyektlar bo'yicha tasnif (36-44)",
         "⚖️ Uch bosqichli javobgarlik (42-45)",
-        "🔍 Kazus Simulyatori",
-        "📦 Deploy va GitHub Yo'riqnomasi"
+        "🔍 Kazus Simulyatori"
     ]
 )
 
@@ -271,7 +265,6 @@ if nav_option == "🏛️ Subyektlar bo'yicha tasnif (36-44)":
     st.subheader("Konstitutsiyaning 36–44-moddalari Subyektlar Bo'yicha Tasnifi")
     st.write("Ushbu bo'limda huquqlarning kimgaligi (faqat fuqaro yoki har kim) va ularning mantiqiy-huquqiy asoslari keltirilgan.")
 
-    # Stat Cards
     col1, col2, col3 = st.columns(3)
     col1.metric("Tahlil qilingan moddalar", "9 ta")
     col2.metric("Faqat Fuqarolarga tegishli", "5 ta", delta="Siyosiy & Ijtimoiy kafolat")
@@ -328,9 +321,9 @@ elif nav_option == "⚖️ Uch bosqichli javobgarlik (42-45)":
     for item in LIABILITY_DATA:
         with st.expander(f"📌 {item['const_art']} — {item['right']}"):
             st.markdown(f"**Huquqbuzarlik shakli:** {item['violation']}")
-            st.markdown(f"- **Mehnat Kodeksi koidasi:** `{item['mk']}`")
+            st.markdown(f"- **Mehnat Kodeksi qoidasi:** `{item['mk']}`")
             st.markdown(f"- **Ma'muriy Javobgarlik (MJtK):** `{item['mjtk']}`")
-            st.markdown(f"- **Jinoyat Javoobgarligi (JK):** `{item['jk']}`")
+            st.markdown(f"- **Jinoyat Javobgarligi (JK):** `{item['jk']}`")
             
             st.info("""
             **Chegara va Mantiqiy Asos:**
@@ -384,32 +377,3 @@ elif nav_option == "🔍 Kazus Simulyatori":
         * **Mehnat Kodeksi:** 181-modda (Haftasiga maks. 40 soat) va 216-modda (Ta'til majburiyligi).
         * **Javobgarlik:** **MJtK 49-moddasi** (Mehnat qonunchiligini buzish).
         """)
-
-# ---------------------------------------------------------
-# TAB 4: DEPLOYMENT INSTRUCTIONS
-# ---------------------------------------------------------
-elif nav_option == "📦 Deploy va GitHub Yo'riqnomasi":
-    st.subheader("GitHub va Streamlit Cloud-ga Yuklash Yo'riqnomasi")
-    st.write("Ushbu loyihani internetga bepul joylashtirish uchun quyidagi 2 ta faylni yarating va GitHub-ga yuklang.")
-
-    st.markdown("### 1. `requirements.txt` fayli tarkibi:")
-    st.code("""
-streamlit>=1.30.0
-pandas>=2.0.0
-    """, language="text")
-
-    st.markdown("### 2. `README.md` fayli tarkibi:")
-    st.code("""
-# Konstitutsiyaviy va Mehnat Huquqlari Tahlili Web App
-
-Ushbu Streamlit dasturi O'zbekiston Respublikasi Konstitutsiyasining 36–45-moddalari va sohaviy kodekslar (MK, MJtK, JK) o'rtasidagi huquqiy bog'liqlikni tahlil qiladi.
-
-## Xususiyatlari
-- 36-44-moddalar tasnifi (Fuqaro vs Har kim)
-- Uch bosqichli javobgarlik tizimi (MK, MJtK, JK)
-- Interaktiv kazuslar simulyatori
-
-## Ishga tushirish
-```bash
-pip install -r requirements.txt
-streamlit run app.py
