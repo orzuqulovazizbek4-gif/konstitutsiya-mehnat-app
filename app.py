@@ -12,41 +12,36 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------------
-# 2. APPLE LIQUID GLASS & MESH GRADIENT CSS
+# 2. FIXED APPLE DARK LIQUID GLASS CSS
 # ---------------------------------------------------------
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     
     html, body, [class*="css"] {
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
         -webkit-font-smoothing: antialiased;
     }
 
-    /* 🌊 APPLE DYNAMIC LIQUID MESH BACKGROUND */
-    .stApp {
-        background: #030712;
-        background-image: 
-            radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
-            radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.2) 0px, transparent 50%),
-            radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
-            radial-gradient(at 0% 100%, rgba(14, 165, 233, 0.2) 0px, transparent 50%);
-        position: relative;
-        overflow-x: hidden;
+    /* 🌌 FORCE DARK BACKGROUND FOR STREAMLIT CONTAINERS */
+    .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"], section.main {
+        background-color: #05070f !important;
+        background: radial-gradient(circle at 50% 10%, #0f172a 0%, #05070f 100%) !important;
+        color: #f8fafc !important;
     }
 
-    /* 🔮 LIQUID AURA BLOBS ANIMATION */
+    /* 🔮 LIQUID NEON ORBS (BACKGROUND LAYER) */
     .stApp::before {
         content: '';
         position: fixed;
-        top: 10%;
-        left: 15%;
-        width: 45vw;
-        height: 45vw;
+        top: -10%;
+        left: -10%;
+        width: 50vw;
+        height: 50vw;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%);
-        filter: blur(60px);
-        animation: liquidFloat1 20s ease-in-out infinite alternate;
+        background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(0,0,0,0) 70%);
+        filter: blur(80px);
+        animation: liquidFloat1 18s ease-in-out infinite alternate;
         pointer-events: none;
         z-index: 0;
     }
@@ -54,120 +49,89 @@ st.markdown("""
     .stApp::after {
         content: '';
         position: fixed;
-        bottom: 5%;
-        right: 10%;
-        width: 50vw;
-        height: 50vw;
+        bottom: -10%;
+        right: -10%;
+        width: 55vw;
+        height: 55vw;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 70%);
-        filter: blur(70px);
-        animation: liquidFloat2 24s ease-in-out infinite alternate;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 70%);
+        filter: blur(90px);
+        animation: liquidFloat2 22s ease-in-out infinite alternate;
         pointer-events: none;
         z-index: 0;
     }
 
     @keyframes liquidFloat1 {
-        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-        50% { transform: translate(80px, 60px) rotate(180deg) scale(1.15); }
-        100% { transform: translate(-40px, 90px) rotate(360deg) scale(0.95); }
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(100px, 70px) scale(1.2); }
     }
 
     @keyframes liquidFloat2 {
-        0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-        50% { transform: translate(-90px, -70px) rotate(-180deg) scale(1.2); }
-        100% { transform: translate(50px, -40px) rotate(-360deg) scale(1); }
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(-90px, -60px) scale(1.25); }
+    }
+
+    /* 📌 ENSURE CONTENT IS ABOVE BACKGROUND */
+    .block-container, [data-testid="stVerticalBlock"] {
+        position: relative;
+        z-index: 2;
     }
 
     /* 🍏 APPLE LIQUID GLASS HEADER PANEL */
     .main-header {
-        background: rgba(255, 255, 255, 0.04) !important;
-        backdrop-filter: blur(30px) saturate(190%) !important;
-        -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        backdrop-filter: blur(25px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
-        padding: 2.5rem 2.8rem;
-        border-radius: 28px;
+        padding: 2.2rem 2.5rem;
+        border-radius: 24px;
         color: #ffffff !important;
-        margin-bottom: 2.2rem;
-        box-shadow: 
-            0 30px 60px -12px rgba(0, 0, 0, 0.5),
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
-            inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
-        position: relative;
-        z-index: 1;
+        margin-bottom: 2rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
     }
     
     .main-header h1 {
-        background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 40%, #38bdf8 100%);
+        background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #38bdf8 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 700;
-        font-size: 2.3rem;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.6rem;
+        font-size: 2.1rem;
+        margin-bottom: 0.5rem;
     }
     
     .main-header p {
         color: #94a3b8 !important;
-        font-size: 1.15rem;
-        font-weight: 400;
+        font-size: 1.1rem;
         margin: 0;
-        letter-spacing: -0.01em;
     }
 
-    /* 💎 APPLE GLASSMORPHIC CARDS WITH SPECULAR GLARE */
+    /* 💎 APPLE GLASSMORPHIC CARDS */
     .legal-card {
-        background: rgba(255, 255, 255, 0.035) !important;
-        backdrop-filter: blur(25px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
         border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
-        border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 24px;
-        padding: 1.8rem;
-        margin-bottom: 1.6rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+        border-radius: 20px;
+        padding: 1.6rem;
+        margin-bottom: 1.5rem;
         color: #f1f5f9 !important;
-        box-shadow: 
-            0 20px 40px -15px rgba(0, 0, 0, 0.5),
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        position: relative;
-        z-index: 1;
-        overflow: hidden;
-    }
-
-    .legal-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-        transition: 0.6s;
-        pointer-events: none;
-    }
-
-    .legal-card:hover::before {
-        left: 100%;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .legal-card:hover {
-        transform: translateY(-6px) scale(1.008);
-        background: rgba(255, 255, 255, 0.06) !important;
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.05) !important;
         border-color: rgba(56, 189, 248, 0.4) !important;
-        border-top-color: rgba(255, 255, 255, 0.4) !important;
-        box-shadow: 
-            0 30px 60px -12px rgba(0, 0, 0, 0.6),
-            0 0 30px 0 rgba(56, 189, 248, 0.25),
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.2);
     }
 
     .legal-card h3 {
         color: #ffffff !important;
         font-weight: 600;
-        font-size: 1.25rem;
-        letter-spacing: -0.01em;
+        font-size: 1.2rem;
         margin: 0;
     }
 
@@ -177,90 +141,71 @@ st.markdown("""
 
     /* 🏷️ APPLE LIQUID BADGES */
     .badge-citizen {
-        background: rgba(56, 189, 248, 0.12) !important;
+        background: rgba(56, 189, 248, 0.15) !important;
         color: #38bdf8 !important;
-        backdrop-filter: blur(12px);
-        padding: 0.4rem 1rem;
+        padding: 0.35rem 0.9rem;
         border-radius: 999px;
         font-weight: 600;
         font-size: 0.82rem;
         display: inline-block;
         border: 1px solid rgba(56, 189, 248, 0.3);
-        box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
-        letter-spacing: 0.02em;
     }
 
     .badge-everyone {
-        background: rgba(52, 211, 153, 0.12) !important;
+        background: rgba(52, 211, 153, 0.15) !important;
         color: #34d399 !important;
-        backdrop-filter: blur(12px);
-        padding: 0.4rem 1rem;
+        padding: 0.35rem 0.9rem;
         border-radius: 999px;
         font-weight: 600;
         font-size: 0.82rem;
         display: inline-block;
         border: 1px solid rgba(52, 211, 153, 0.3);
-        box-shadow: 0 4px 15px rgba(52, 211, 153, 0.2);
-        letter-spacing: 0.02em;
     }
 
     /* 📑 LIQUID QUOTE / NORM BOX */
     .norm-box {
-        background: rgba(15, 23, 42, 0.5) !important;
-        backdrop-filter: blur(16px);
+        background: rgba(15, 23, 42, 0.6) !important;
         border-left: 3px solid #38bdf8 !important;
-        padding: 1.2rem;
-        border-radius: 14px;
-        margin: 1.1rem 0;
+        padding: 1.1rem;
+        border-radius: 12px;
+        margin: 1rem 0;
         color: #e2e8f0 !important;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
     .norm-box em {
         color: #7dd3fc !important;
         font-style: normal;
-        font-weight: 400;
     }
 
     .code-badge {
         font-weight: 600;
         color: #38bdf8 !important;
-        background: rgba(56, 189, 248, 0.1) !important;
-        padding: 4px 10px;
-        border-radius: 8px;
+        background: rgba(56, 189, 248, 0.12) !important;
+        padding: 3px 8px;
+        border-radius: 6px;
         border: 1px solid rgba(56, 189, 248, 0.25);
     }
 
     /* 📊 STREAMLIT NATIVE UI GLASS OVERRIDES */
     div[data-testid="stSidebar"] {
-        background: rgba(15, 23, 42, 0.4) !important;
-        backdrop-filter: blur(25px) saturate(180%) !important;
+        background: rgba(10, 15, 29, 0.7) !important;
+        backdrop-filter: blur(20px) !important;
         border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
 
     div[data-testid="stMetric"] {
         background: rgba(255, 255, 255, 0.03) !important;
-        backdrop-filter: blur(20px) !important;
+        backdrop-filter: blur(15px) !important;
         border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
-        padding: 1.2rem;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        padding: 1rem;
+        border-radius: 16px;
     }
 
     .stSelectbox > div > div {
         background: rgba(255, 255, 255, 0.05) !important;
-        backdrop-filter: blur(15px) !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 14px !important;
+        border-radius: 12px !important;
         color: #ffffff !important;
-    }
-
-    div[data-testid="stExpander"] {
-        background: rgba(255, 255, 255, 0.025) !important;
-        backdrop-filter: blur(20px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 18px !important;
     }
 </style>
 """, unsafe_allow_html=True)
